@@ -1,0 +1,70 @@
+generated: '2026-08-21'
+method: probed
+status: published
+source: https://gigaio.com/.well-known/oauth-protected-resource
+description: >-
+  GigaIO runs a remote Model Context Protocol server on its own domain at
+  https://gigaio.com/wp-json/mcp/mcp-oauth-server, advertised through an RFC 9728
+  protected-resource document and backed by an RFC 8414 authorization server at
+  https://gigaio.com. A second, unauthenticated-by-name endpoint,
+  /wp-json/mcp/mcp-adapter-default-server, is registered in the same namespace and
+  also refuses anonymous calls.
+
+  WHAT THIS SERVER IS, PLAINLY. It is the WordPress MCP Adapter running on GigaIO's
+  marketing site (gigaio.com is WordPress on WP Engine), so the abilities it exposes
+  are site/content abilities, not the FabreX or Gryf product control plane. It is,
+  however, a deliberate deployment and not a hosting default: the `mcp` REST namespace
+  is absent from other WP Engine and WordPress sites probed the same day
+  (wpengine.com, ma.tt, techcrunch.com all expose `wp-abilities/v1` but no `mcp`
+  namespace), and the OAuth authorization server with scope "mcp" had to be configured
+  in addition to the adapter. GigaIO's product APIs (DMTF Redfish for FabreX fabric
+  management) are documented only behind the customer support portal and are not
+  reachable from this server.
+deployment:
+  mode: remote
+  endpoint: https://gigaio.com/wp-json/mcp/mcp-oauth-server
+  auth: oauth
+  verified: probed
+server:
+  name: gigaio-mcp-oauth-server
+  transport: http
+  url: https://gigaio.com/wp-json/mcp/mcp-oauth-server
+  methods: [POST, GET, DELETE]
+  auth: oauth2
+  protected_resource: well-known/gigaio-oauth-protected-resource.json
+  authorization_server: https://gigaio.com
+  authorization_server_metadata: well-known/gigaio-oauth-authorization-server.json
+  scopes: [mcp]
+  implementation: WordPress MCP Adapter (REST namespace `mcp`), WordPress Abilities API (`wp-abilities/v1`)
+additional_endpoints:
+  - url: https://gigaio.com/wp-json/mcp/mcp-adapter-default-server
+    methods: [POST, GET, DELETE]
+    auth: unknown
+    note: >-
+      Registered in the same `mcp` namespace. An anonymous tools/list returns
+      HTTP 401 rest_forbidden, so it is gated too; no metadata document names it.
+tools: []
+tools_note: >-
+  NOT CAPTURED — the live tool list is auth-gated. An anonymous JSON-RPC
+  {"jsonrpc":"2.0","id":1,"method":"tools/list"} against
+  https://gigaio.com/wp-json/mcp/mcp-oauth-server returns HTTP 401
+  {"code":"mcp_unauthorized","message":"MCP authentication required."}, and the same
+  call against /wp-json/mcp/mcp-adapter-default-server returns HTTP 401 rest_forbidden.
+  GigaIO publishes no llms.txt and no MCP documentation page, so there is no published
+  tool list to fall back to. Tool names and inputSchemas require authenticated
+  introspection with an OAuth token in the "mcp" scope. Nothing is inferred here.
+x-evidence:
+  - url: https://gigaio.com/.well-known/oauth-protected-resource
+    http_status: 200
+    fetched: '2026-08-21'
+  - url: https://gigaio.com/.well-known/oauth-authorization-server
+    http_status: 200
+    fetched: '2026-08-21'
+  - url: https://gigaio.com/wp-json/mcp
+    http_status: 200
+    fetched: '2026-08-21'
+    note: Route discovery listing the three `mcp` namespace routes.
+  - url: https://gigaio.com/wp-json/mcp/mcp-oauth-server
+    http_status: 401
+    fetched: '2026-08-21'
+    note: POST tools/list, anonymous — mcp_unauthorized.

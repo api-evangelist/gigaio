@@ -1,0 +1,55 @@
+generated: '2026-08-21'
+method: probed
+description: >-
+  Results of probing the /.well-known/ discovery surface on every host GigaIO
+  operates. GigaIO publishes no separate API, docs or developer host — api.gigaio.com,
+  docs.gigaio.com, developer.gigaio.com and support.gigaio.com do not resolve in DNS —
+  so gigaio.com is the only host with a well-known surface. Two documents returned a
+  real payload: an RFC 8414 OAuth 2.0 Authorization Server Metadata document and an
+  RFC 9728 OAuth 2.0 Protected Resource Metadata document, both belonging to the
+  Model Context Protocol server GigaIO runs at
+  https://gigaio.com/wp-json/mcp/mcp-oauth-server. Every other path 404s; the WordPress
+  theme answers 404 with an HTML body, which is recorded as a miss, not a document.
+source: https://gigaio.com/.well-known/oauth-authorization-server
+hosts:
+  - host: https://gigaio.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        type: application/json
+        file: gigaio-oauth-authorization-server.json
+        note: >-
+          RFC 8414. issuer https://gigaio.com, authorization_endpoint
+          https://gigaio.com/oauth/authorize, token_endpoint https://gigaio.com/oauth/token,
+          revocation_endpoint https://gigaio.com/oauth/revoke. authorization_code +
+          refresh_token grants, PKCE S256 required, public clients
+          (token_endpoint_auth_methods_supported: none), single scope "mcp".
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        type: application/json
+        file: gigaio-oauth-protected-resource.json
+        note: >-
+          RFC 9728. Names the protected resource
+          https://gigaio.com/wp-json/mcp/mcp-oauth-server and points back at
+          https://gigaio.com as its authorization server. Bearer token in the header.
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://api.gigaio.com
+    documents: []
+    note: Host does not resolve (NXDOMAIN); nothing to probe.
+  - host: https://docs.gigaio.com
+    documents: []
+    note: Host does not resolve (NXDOMAIN); nothing to probe.
+  - host: https://developer.gigaio.com
+    documents: []
+    note: Host does not resolve (NXDOMAIN); nothing to probe.

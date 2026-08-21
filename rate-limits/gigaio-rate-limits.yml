@@ -1,0 +1,32 @@
+generated: '2026-08-21'
+method: searched
+source: https://gigaio.com/robots.txt
+description: >-
+  GigaIO publishes no API rate limits. There is no public API reference to carry them —
+  the FabreX/Redfish documentation is behind the customer support portal — and the one
+  public machine surface, the OAuth-protected MCP endpoint, returns no rate-limit
+  headers on an anonymous request. The only published throttling signal of any kind is
+  a crawler directive.
+limit_count: 0
+limits: []
+headers: []
+headers_note: >-
+  No X-RateLimit-*, RateLimit-* or Retry-After headers were observed on any
+  unauthenticated response from gigaio.com, including the 401 from
+  /wp-json/mcp/mcp-oauth-server. Authenticated behaviour was not observed.
+exhaustion_status: null
+crawler_policy:
+  robots_txt: https://gigaio.com/robots.txt
+  crawl_delay: 10
+  disallow: []
+  note: >-
+    robots.txt sets Crawl-delay: 10 and disallows nothing. This is a crawler courtesy
+    directive, not an API rate limit, and is recorded separately for that reason.
+evidence:
+  - url: https://gigaio.com/robots.txt
+    http_status: 200
+  - url: https://gigaio.com/wp-json/mcp/mcp-oauth-server
+    http_status: 401
+  - url: https://gigaio.com/support/
+    http_status: 200
+    note: Support/KB requires a login; any documented limits would live there.

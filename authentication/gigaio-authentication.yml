@@ -1,0 +1,61 @@
+generated: '2026-08-21'
+method: probed
+source: https://gigaio.com/.well-known/oauth-authorization-server
+description: >-
+  GigaIO publishes exactly one machine-readable authentication surface: the OAuth 2.0
+  authorization server backing its Model Context Protocol endpoint. Its FabreX/Gryf
+  product APIs (DMTF Redfish) have no public authentication documentation — the
+  reference sits behind the Atlassian-hosted customer support portal — so nothing about
+  product-API auth is asserted here.
+schemes:
+  - id: mcp_oauth2
+    type: oauth2
+    applies_to: https://gigaio.com/wp-json/mcp/mcp-oauth-server
+    issuer: https://gigaio.com
+    flows:
+      authorization_code:
+        authorizationUrl: https://gigaio.com/oauth/authorize
+        tokenUrl: https://gigaio.com/oauth/token
+        refreshUrl: https://gigaio.com/oauth/token
+        scopes:
+          mcp: Access the GigaIO Model Context Protocol server.
+    grant_types: [authorization_code, refresh_token]
+    response_types: [code]
+    pkce:
+      required: true
+      code_challenge_methods: [S256]
+    client_authentication:
+      token_endpoint_auth_methods: [none]
+      note: >-
+        Public clients only — the token endpoint accepts no client secret. Client
+        identity is established by a client-id metadata document
+        (client_id_metadata_document_supported: true), so a client registers by
+        publishing its own metadata URL rather than by pre-registering with GigaIO.
+    revocation_endpoint: https://gigaio.com/oauth/revoke
+    bearer_methods_supported: [header]
+    rfc:
+      - RFC 6749 (OAuth 2.0)
+      - RFC 7636 (PKCE)
+      - RFC 7009 (token revocation)
+      - RFC 8414 (authorization server metadata)
+      - RFC 9728 (protected resource metadata)
+    evidence:
+      - url: https://gigaio.com/.well-known/oauth-authorization-server
+        http_status: 200
+      - url: https://gigaio.com/.well-known/oauth-protected-resource
+        http_status: 200
+      - url: https://gigaio.com/wp-json/mcp/mcp-oauth-server
+        http_status: 401
+        note: Anonymous POST returns mcp_unauthorized, confirming the resource is protected.
+not_documented:
+  - surface: FabreX fabric management (DMTF Redfish RESTful API)
+    reason: >-
+      GigaIO markets Redfish APIs for FabreX fabric management and an integration guide,
+      but publishes no public authentication reference. The knowledge base requires a
+      support-portal login and the CLI page directs readers to "CONTACT US for details
+      on APIs".
+    evidence:
+      - url: https://gigaio.com/products/fabrex-software/
+        http_status: 200
+      - url: https://gigaio.com/sign-in-to-gigaio-support/
+        http_status: 200

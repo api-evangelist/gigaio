@@ -1,0 +1,96 @@
+generated: '2026-08-21'
+method: derived
+source: well-known/gigaio-oauth-authorization-server.json, mcp/gigaio-mcp.yml
+description: >-
+  Cross-cutting runtime semantics for GigaIO's public surface. GigaIO publishes no
+  OpenAPI, no API reference and no developer documentation, so most of this document is
+  an honest set of nulls rather than a description of conventions. Everything asserted
+  below is read from the two OAuth discovery documents GigaIO serves and from probed
+  responses on the MCP endpoint. Nothing is derived from a product API we cannot reach.
+authentication:
+  style: oauth2-bearer
+  detail: >-
+    Authorization Code with PKCE (S256), public clients, bearer token in the
+    Authorization header. Single scope "mcp". See authentication/gigaio-authentication.yml.
+  applies_to: https://gigaio.com/wp-json/mcp/mcp-oauth-server
+idempotency:
+  supported: na
+  header: null
+  scope: null
+  retention: null
+  note: >-
+    Not applicable and not documented. The only reachable surface is a JSON-RPC MCP
+    endpoint whose write semantics are auth-gated and undescribed. No `Idempotency`
+    pointer is emitted — asserting one here would credit GigaIO with a guarantee it has
+    never published.
+pagination:
+  style: null
+  parameters: []
+  response_fields: []
+  note: Undocumented; no public reference or spec to derive from.
+field_expansion:
+  supported: null
+  note: Undocumented.
+metadata:
+  supported: null
+  note: Undocumented.
+request_tracing:
+  request_id_header: null
+  note: >-
+    No request-id or trace header was observed on the anonymous responses probed
+    (401 from /wp-json/mcp/mcp-oauth-server, 200 from the two well-known documents).
+versioning:
+  style: null
+  note: See lifecycle/gigaio-lifecycle.yml — no published API versioning policy.
+error_envelope:
+  format: wordpress-rest
+  shape: '{"code": "<slug>", "message": "<human text>", "data": {"status": <http code>}}'
+  problem_json: false
+  observed:
+    - url: https://gigaio.com/wp-json/mcp/mcp-oauth-server
+      http_status: 401
+      body: '{"code":"mcp_unauthorized","message":"MCP authentication required.","data":{"status":401}}'
+    - url: https://gigaio.com/wp-json/mcp/mcp-adapter-default-server
+      http_status: 401
+      body: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+  note: >-
+    This is the WordPress REST error envelope, inherited from the platform the MCP
+    adapter runs on, not an error contract GigaIO designed or documents.
+rate_limit_signaling:
+  headers: []
+  note: See rate-limits/gigaio-rate-limits.yml — none observed, none documented.
+reversibility:
+  grade: na
+  applicable: false
+  detail: >-
+    No public write surface exists to reverse. GigaIO publishes no OpenAPI and no API
+    reference; the single reachable machine endpoint is an OAuth-protected MCP server
+    whose tool set could not be introspected anonymously, so neither its write
+    operations nor any reversal path can be observed. GigaIO's product control plane
+    (FabreX composability via DMTF Redfish) unquestionably has write operations —
+    composing and decomposing resources into a server is inherently a reversible
+    action, and Redfish itself defines the DELETE/reset semantics — but GigaIO
+    publishes no reference stating any of that, and no window is stated anywhere
+    public. Recording `na` rather than a guessed window is deliberate: an invented
+    reversal window is the one error in this pipeline that could cost a user real
+    money or a live cluster.
+  operations: []
+  evidence:
+    - url: https://gigaio.com/composition-software/fabrex-cli/
+      http_status: 200
+      note: >-
+        Public CLI page describes composition/decomposition control but publishes no
+        commands and directs readers to "CONTACT US for details on APIs".
+    - url: https://gigaio.com/sign-in-to-gigaio-support/
+      http_status: 200
+      note: Reference and knowledge base require a support-portal login.
+dry_run_mode:
+  supported: na
+  note: Not documented; no public reference to derive from.
+cross_links:
+  authentication: authentication/gigaio-authentication.yml
+  scopes: scopes/gigaio-scopes.yml
+  lifecycle: lifecycle/gigaio-lifecycle.yml
+  rate_limits: rate-limits/gigaio-rate-limits.yml
+  conformance: conformance/gigaio-conformance.yml
+  mcp: mcp/gigaio-mcp.yml

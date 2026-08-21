@@ -1,0 +1,41 @@
+generated: '2026-08-21'
+method: searched
+source: https://gigaio.com/composition-software/fabrex-cli/
+description: >-
+  GigaIO documents a first-party command line interface — the FabreX CLI — on its own
+  product site, positioned alongside DMTF Redfish RESTful APIs as the two ways to drive
+  composition of the FabreX fabric. The page is marketing, not reference: no binary
+  name, no install method, no command groups and no example invocations are published.
+  Readers are told to "CONTACT US for details on APIs".
+name: FabreX CLI
+vendor_status: >-
+  FabreX is now a d-Matrix trademark following the April 2026 sale of GigaIO's
+  datacenter technology and assets to d-Matrix; GigaIO continues to market FabreX
+  software as part of its edge systems. Forward ownership of the FabreX CLI surface
+  may sit with d-Matrix.
+install: []
+install_note: No install method (package, tarball, container, or repo) is published publicly.
+binary: null
+commands: []
+commands_note: >-
+  NOT CAPTURED. No command names, groups, flags or example invocations appear on any
+  public GigaIO page. The command reference is in the customer support knowledge base
+  behind an Atlassian login. Nothing is invented here.
+capabilities:
+  - Compose and decompose bare-metal resources (GPU, FPGA, NVMe, DRAM) to a server
+  - Control of the network and attached resources across the PCIe/CXL fabric
+  - Scripting and automation via Chef, Puppet, Ansible and Robot Framework
+  - Alongside Redfish RESTful APIs for fabric automation, orchestration and job management
+integrations:
+  devops: [Ansible, Chef, Puppet, Robot Framework]
+  schedulers: [Slurm, OpenPBS, PBS Pro, LSF, Altair Grid Engine, Kubernetes]
+evidence:
+  - url: https://gigaio.com/composition-software/fabrex-cli/
+    http_status: 200
+  - url: https://gigaio.com/products/fabrex-software/
+    http_status: 200
+    note: >-
+      "GigaIO also provides an integration guide and an easy to use CLI to allow any
+      customer to build playbooks, blueprints, or just straight API calls for
+      personalized integration and seamless integration with Ansible, Chef, Puppet and
+      other commonly used DevOps tool sets."

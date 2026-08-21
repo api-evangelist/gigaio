@@ -42,5 +42,37 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-GigaIO is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+GigaIO is a Carlsbad, California hardware and software company building datacenter-class
+computing for the edge. Its current product line is **Gryf** — a carry-on suitcase-sized,
+ruggedized, field-serviceable AI supercomputer built from hot-swappable Accelerator,
+Compute, Network and Storage sleds — plus **Manticore**. The company was founded around
+**FabreX**, a PCIe/CXL composable memory fabric that disaggregates GPUs, FPGAs, NVMe and
+DRAM into dynamically composed clusters, managed with DMTF Redfish RESTful APIs and a
+FabreX CLI. In April 2026 GigaIO sold its datacenter technology and assets — including
+SuperNODE and FabreX — to d-Matrix and refocused on edge AI inferencing.
+
+- https://gigaio.com/
+
+## What GigaIO publishes
+
+GigaIO has **no public developer portal, API reference, or machine-readable
+specification**. The API documentation and knowledge base sit behind an Atlassian Jira
+Service Management customer portal, and the FabreX CLI page directs readers to
+"CONTACT US for details on APIs".
+
+It does, however, run a **remote Model Context Protocol server on its own host** at
+`https://gigaio.com/wp-json/mcp/mcp-oauth-server`, protected by OAuth 2.0 with PKCE and
+advertised through RFC 8414 and RFC 9728 discovery documents (both captured verbatim in
+`well-known/`). The tool list is auth-gated and was not introspected.
+
+| Artifact | What it records |
+|---|---|
+| `well-known/` | The two OAuth discovery documents GigaIO serves, verbatim, plus every path that 404s |
+| `mcp/` | The remote MCP endpoint, its OAuth posture, and why the tool list could not be read |
+| `authentication/`, `scopes/` | The OAuth 2.0 profile and the single published scope, `mcp` |
+| `conformance/` | RFC 6749/7009/7636/8414/9728 + MCP conformance; DMTF Redfish recorded as claimed-but-unverifiable |
+| `lifecycle/` | No status page, no deprecation policy; the d-Matrix divestiture as the lifecycle event |
+| `cli/`, `packages/` | A documented-but-unspecified FabreX CLI; zero client libraries in any registry |
+| `plans/`, `rate-limits/` | Measured zeros — no pricing page, no published limits |
+| `conventions/` | Runtime semantics, mostly honest nulls; reversibility is `na` with the reason stated |
+| `llms/` | A generated llms.txt (GigaIO serves none) including a list of what is confirmed absent |

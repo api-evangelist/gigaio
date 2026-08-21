@@ -1,0 +1,61 @@
+generated: '2026-08-21'
+method: searched
+source: https://gigaio.com/support/
+description: >-
+  Lifecycle posture for GigaIO's public surface. GigaIO publishes no API versioning
+  policy, no deprecation policy, no Sunset/Deprecation header commitment, no SLA and no
+  status page. Support is an email address plus an Atlassian Jira Service Management
+  customer portal that requires a login. The one dated, public, machine-readable change
+  signal is the WordPress news feed.
+versioning:
+  scheme: null
+  current_version: null
+  policy_url: null
+  note: >-
+    No public API versioning policy. FabreX software releases are versioned in
+    datasheets (GIO_FabreX_OS v3, v4.0, v5.1.1, v5.2 PDFs on gigaio.com/wp-content),
+    which is product-release versioning, not API versioning.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  note: >-
+    No deprecation policy published. No `Deprecation` pointer is emitted.
+    The largest lifecycle event in the record is a divestiture rather than a
+    deprecation: in April 2026 GigaIO sold its datacenter technology and assets,
+    including SuperNODE and FabreX, to d-Matrix, and FabreX is now a d-Matrix
+    trademark. Anyone integrating against FabreX management APIs should treat d-Matrix
+    as the forward owner of that surface.
+    Evidence: https://gigaio.com/2026/04/gigaio-sells-groundbreaking-datacenter-technology-and-assets-to-d-matrix/
+status_page:
+  url: null
+  probed:
+    - url: https://status.gigaio.com/
+      http_status: 000
+      note: NXDOMAIN — host does not resolve.
+    - url: https://gigaio.com/status/
+      http_status: 404
+  note: No status page. No `StatusPage` pointer is emitted.
+sla:
+  url: null
+  note: No published SLA or uptime commitment.
+support:
+  email: support@gigaio.com
+  portal: https://gigaio.com/sign-in-to-gigaio-support/
+  portal_target: https://gigaio.atlassian.net/servicedesk/customer/user/login?destination=portals
+  public: false
+  note: >-
+    Knowledge base and ticketing sit behind an Atlassian Jira Service Management
+    customer login. This is where GigaIO's API documentation lives.
+change_signal:
+  feed: https://gigaio.com/news/feed/
+  http_status: 200
+  index: https://gigaio.com/news/
+  sitemap: https://gigaio.com/post-sitemap.xml
+  note: >-
+    Dated posts with lastmod timestamps, e.g. 2026-06 "Gryf Rewrites Rules of Edge
+    Deployment" and 2026-07 partner announcements. This is company news, not an API
+    changelog, so no `ChangeLog` pointer is emitted.
+deprecated_operations: []
+deprecated_operations_note: No OpenAPI is published, so no deprecated operations can be derived.

@@ -1,0 +1,25 @@
+generated: '2026-08-21'
+method: searched
+source: https://gigaio.com/products/
+description: >-
+  GigaIO publishes no pricing. It sells Gryf and Manticore edge AI systems and,
+  historically, FabreX composable-fabric appliances through a direct and partner
+  sales motion; there is no pricing page, no plans/tiers page, no self-service
+  checkout and no published list price on gigaio.com. The commercial motion is a
+  contact form and a partner network.
+plan_count: 0
+plans: []
+model: enterprise-contact-sales
+currency: null
+evidence:
+  - url: https://gigaio.com/pricing/
+    http_status: 404
+  - url: https://gigaio.com/products/
+    http_status: 200
+  - url: https://gigaio.com/contact/
+    http_status: 200
+  - url: https://gigaio.com/partners/
+    http_status: 200
+note: >-
+  plan_count: 0 is a measured absence, not a gap in this pass. No `Pricing` pointer is
+  emitted because there is no pricing page to point at.

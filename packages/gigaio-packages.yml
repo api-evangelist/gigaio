@@ -1,0 +1,68 @@
+generated: '2026-08-21'
+method: searched
+source: registry searches (npm, PyPI, RubyGems, crates.io) 2026-08-21
+description: >-
+  GigaIO publishes no client libraries or SDKs in any public package registry. This is
+  a measured absence: every registry below was queried unauthenticated on the date
+  above and returned nothing first-party. GigaIO's own integration story is a CLI plus
+  DMTF Redfish REST calls driven from Ansible/Chef/Puppet, which needs no vendor SDK —
+  so this is a coherent posture, not necessarily a gap.
+package_count: 0
+packages: []
+searched:
+  - registry: npm
+    query: gigaio
+    endpoint: https://registry.npmjs.org/-/v1/search?text=gigaio
+    results: 0
+    version: null
+  - registry: npm
+    query: fabrex
+    endpoint: https://registry.npmjs.org/-/v1/search?text=fabrex
+    results: 0
+    version: null
+  - registry: pypi
+    query: gigaio
+    endpoint: https://pypi.org/pypi/gigaio/json
+    http_status: 404
+    version: null
+  - registry: pypi
+    query: fabrex
+    endpoint: https://pypi.org/pypi/fabrex/json
+    http_status: 404
+    version: null
+  - registry: pypi
+    query: gigaio-sdk
+    endpoint: https://pypi.org/pypi/gigaio-sdk/json
+    http_status: 404
+    version: null
+  - registry: pypi
+    query: fabrex-cli
+    endpoint: https://pypi.org/pypi/fabrex-cli/json
+    http_status: 404
+    version: null
+  - registry: rubygems
+    query: gigaio
+    endpoint: https://rubygems.org/api/v1/gems/gigaio.json
+    http_status: 404
+    version: null
+  - registry: crates.io
+    query: gigaio
+    endpoint: https://crates.io/api/v1/crates/gigaio
+    http_status: 403
+    version: null
+    note: crates.io refused the unauthenticated probe (403); treated as unresolved, not as a hit.
+source_repositories:
+  - url: https://github.com/GigaIO
+    http_status: 200
+    public_repos: 0
+    official: false
+    note: >-
+      A GitHub organization named "Giga IO" exists at github.com/GigaIO but is NOT
+      confirmed to be this company: its profile blog is https://giga.io, which
+      redirects to giga.ai — a different business — and it has zero public
+      repositories. No `GitHubOrganization` pointer is emitted, and nothing is
+      attributed to GigaIO from it.
+note: >-
+  No `SDKs` pointer is emitted — there is no official client library to count. A
+  `Packages` pointer is also withheld: this file documents an absence, and a pointer
+  would read as a presence.

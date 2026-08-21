@@ -1,17 +1,38 @@
 aid: gigaio
 name: GigaIO
-description: 'GigaIO is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  GigaIO is a Carlsbad, California hardware and software company building
+  datacenter-class computing for the edge. Its current product line is Gryf, a
+  carry-on suitcase-sized, ruggedized, field-serviceable AI supercomputer built from
+  hot-swappable Accelerator, Compute, Network and Storage sleds, plus Manticore for
+  larger deployments. The company was founded around FabreX, a PCIe/CXL-based
+  composable memory fabric that disaggregates GPUs, FPGAs, NVMe and DRAM into
+  dynamically composed clusters and is managed with DMTF Redfish RESTful APIs and a
+  FabreX CLI that integrates with Ansible, Chef, Puppet, Slurm, OpenPBS, LSF and
+  Kubernetes. In April 2026 GigaIO sold its datacenter technology and assets —
+  including SuperNODE and FabreX — to d-Matrix, and refocused the company on edge AI
+  inferencing. GigaIO publishes no public developer portal, API reference or
+  machine-readable specification; the API documentation and knowledge base sit behind
+  its Atlassian-hosted customer support portal. It does run a remote Model Context
+  Protocol server on gigaio.com, protected by OAuth 2.0 with PKCE.
+image: https://gigaio.com/wp-content/uploads/2020/09/logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/gigaio/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-21'
 modified: '2026-08-21'
 tags:
 - Company
+- Composable Infrastructure
+- Edge Computing
+- Artificial Intelligence
+- High Performance Computing
+- Data Center
+- Hardware
+- GPU
+- PCIe
+- Infrastructure as Code
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +40,72 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/gigaio-domain-security.yml
 - type: Website
-  url: https://www.nasdaqprivatemarket.com/
+  url: https://gigaio.com/
+- type: Support
+  url: https://gigaio.com/support/
+- type: Login
+  url: https://gigaio.com/sign-in-to-gigaio-support/
+- type: Blog
+  url: https://gigaio.com/news/
+- type: TermsOfService
+  url: https://gigaio.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://gigaio.com/privacy-policy/
+- type: WellKnown
+  url: well-known/gigaio-well-known.yml
+- type: MCPServer
+  url: mcp/gigaio-mcp.yml
+- type: Authentication
+  url: authentication/gigaio-authentication.yml
+- type: OAuthScopes
+  url: scopes/gigaio-scopes.yml
+- type: Conformance
+  url: conformance/gigaio-conformance.yml
+- type: Conventions
+  url: conventions/gigaio-conventions.yml
+- type: Lifecycle
+  url: lifecycle/gigaio-lifecycle.yml
+- type: Plans
+  url: plans/gigaio-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/gigaio-rate-limits.yml
+- type: CLI
+  url: cli/gigaio-cli.yml
+- type: LLMsTxt
+  url: llms/gigaio-llms.txt
+x-enrichment:
+  date: '2026-08-21'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: null
+  detail: >-
+    GigaIO ships no public developer program — its FabreX/Redfish API reference and
+    knowledge base sit behind an Atlassian Jira Service Management customer login at
+    gigaio.atlassian.net, and the FabreX CLI page tells readers to "CONTACT US for
+    details on APIs" — but STEP 0b contract discovery did not come back empty. GigaIO
+    deliberately runs a remote, OAuth-protected Model Context Protocol server on its
+    own host at https://gigaio.com/wp-json/mcp/mcp-oauth-server, advertised by RFC 8414
+    and RFC 9728 discovery documents that were captured verbatim here. The `mcp` REST
+    namespace is not a WordPress or WP Engine default (wpengine.com, ma.tt and
+    techcrunch.com expose wp-abilities/v1 but no mcp namespace), so it was installed on
+    purpose. The tool list itself is auth-gated and was not introspected.
+  evidence:
+    - url: https://gigaio.com/.well-known/oauth-protected-resource
+      status: 200
+    - url: https://gigaio.com/.well-known/oauth-authorization-server
+      status: 200
+    - url: https://gigaio.com/wp-json/mcp/mcp-oauth-server
+      status: 401
+    - url: https://gigaio.com/sign-in-to-gigaio-support/
+      status: 200
+    - url: https://gigaio.com/openapi.json
+      status: 404
+    - url: https://gigaio.com/.well-known/agent-card.json
+      status: 404
+  checked: '2026-08-21'

@@ -1,0 +1,20 @@
+generated: '2026-08-21'
+method: probed
+source: https://gigaio.com/.well-known/oauth-authorization-server
+description: >-
+  The complete published scope surface for GigaIO, read verbatim from the RFC 8414
+  authorization-server metadata document and corroborated by the RFC 9728
+  protected-resource document. One scope exists. GigaIO publishes no scopes or
+  permissions reference page; this is the whole of it.
+authorization_server: https://gigaio.com
+protected_resource: https://gigaio.com/wp-json/mcp/mcp-oauth-server
+docs: null
+docs_note: No public scopes/permissions reference page is published.
+scope_count: 1
+scopes:
+  - name: mcp
+    description: >-
+      Access the GigaIO Model Context Protocol server. Declared in
+      scopes_supported of both the authorization-server and protected-resource
+      metadata documents. The provider publishes no finer-grained read/write split.
+    source: https://gigaio.com/.well-known/oauth-authorization-server
