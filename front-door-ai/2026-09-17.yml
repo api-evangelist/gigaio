@@ -1,0 +1,30 @@
+# Front Door AI Index — gigaio — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: gigaio
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: gigaio.com
+  final_host: gigaio.com
+  ownership: own
+  owner: gigaio
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 20
+  host_score: 20
+  density: 10.41
+  words: 1921
+  tiers:
+    agentic: 3
+    core: 17
+    model: 0
+  ambiguous: 2
+  top_terms:
+    AI: 15
+    inference: 2
+    intelligence: 2
+    ML: 1
+    agentic: 1
+    deep learning: 1
