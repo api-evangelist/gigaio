@@ -55,7 +55,7 @@ tags:
 - Edge Computing
 - Artificial Intelligence
 - High Performance Computing
-- Data-Center
+- Data Center
 - Hardware
 - GPU
 - PCIe
@@ -71,6 +71,7 @@ tags_raw:
 - GPU
 - PCIe
 - Infrastructure as Code
+- Data-Center
 apis: []
 maintainers:
 - FN: Kin Lane
