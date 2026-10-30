@@ -64,37 +64,110 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-GigaIO is a Carlsbad, California hardware and software company building datacenter-class
-computing for the edge. Its current product line is **Gryf** — a carry-on suitcase-sized,
-ruggedized, field-serviceable AI supercomputer built from hot-swappable Accelerator,
-Compute, Network and Storage sleds — plus **Manticore**. The company was founded around
-**FabreX**, a PCIe/CXL composable memory fabric that disaggregates GPUs, FPGAs, NVMe and
-DRAM into dynamically composed clusters, managed with DMTF Redfish RESTful APIs and a
-FabreX CLI. In April 2026 GigaIO sold its datacenter technology and assets — including
-SuperNODE and FabreX — to d-Matrix and refocused on edge AI inferencing.
+GigaIO is a Carlsbad, California hardware and software company building datacenter-class computing for the edge. Its current product line is Gryf, a carry-on suitcase-sized, ruggedized, field-serviceable AI supercomputer built from hot-swappable Accelerator, Compute, Network and Storage sleds, plus Manticore for larger deployments. The company was founded around FabreX, a PCIe/CXL-based composable memory fabric that disaggregates GPUs, FPGAs, NVMe and DRAM into dynamically composed clusters and is managed with DMTF Redfish RESTful APIs and a FabreX CLI that integrates with Ansible, Chef, Puppet, Slurm, OpenPBS, LSF and Kubernetes. In April 2026 GigaIO sold its datacenter technology and assets — including SuperNODE and FabreX — to d-Matrix, and refocused the company on edge AI inferencing. GigaIO publishes no public developer portal, API reference or machine-readable specification; the API documentation and knowledge base sit behind its Atlassian-hosted customer support portal. It does run a remote Model Context Protocol server on gigaio.com, protected by OAuth 2.0 with PKCE.
 
-- https://gigaio.com/
+**Areas:** Company · Composable Infrastructure · Edge Computing · Artificial Intelligence · High Performance Computing · Data Center · Hardware · GPU · PCIe · Infrastructure as Code
 
-## What GigaIO publishes
+## GigaIO on APIs.io
 
-GigaIO has **no public developer portal, API reference, or machine-readable
-specification**. The API documentation and knowledge base sit behind an Atlassian Jira
-Service Management customer portal, and the FabreX CLI page directs readers to
-"CONTACT US for details on APIs".
+Everything profiled for GigaIO is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/gigaio/](https://apis.io/providers/gigaio/)** — or go straight to one of the APIs or properties below.
 
-It does, however, run a **remote Model Context Protocol server on its own host** at
-`https://gigaio.com/wp-json/mcp/mcp-oauth-server`, protected by OAuth 2.0 with PKCE and
-advertised through RFC 8414 and RFC 9728 discovery documents (both captured verbatim in
-`well-known/`). The tool list is auth-gated and was not introspected.
+### Published properties
 
-| Artifact | What it records |
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [gigaio-mcp-oauth-server](https://apis.io/servers/gigaio/gigaio-mcp-oauth-server/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Gigaio Authentication](https://apis.io/security/gigaio/gigaio-authentication/)
+- [Gigaio Domain Security](https://apis.io/security/gigaio/gigaio-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Gigaio Scopes](https://apis.io/scopes/gigaio/gigaio-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Gigaio Plans Pricing](https://apis.io/plans/gigaio/gigaio-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Gigaio Rate Limits](https://apis.io/rate-limits/gigaio/gigaio-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://gigaio.com/)
+- [Support](https://gigaio.com/support/)
+- [Blog](https://gigaio.com/news/)
+- [Terms of service](https://gigaio.com/terms-of-use/)
+- [Privacy policy](https://gigaio.com/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 20.6** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| `well-known/` | The two OAuth discovery documents GigaIO serves, verbatim, plus every path that 404s |
-| `mcp/` | The remote MCP endpoint, its OAuth posture, and why the tool list could not be read |
-| `authentication/`, `scopes/` | The OAuth 2.0 profile and the single published scope, `mcp` |
-| `conformance/` | RFC 6749/7009/7636/8414/9728 + MCP conformance; DMTF Redfish recorded as claimed-but-unverifiable |
-| `lifecycle/` | No status page, no deprecation policy; the d-Matrix divestiture as the lifecycle event |
-| `cli/`, `packages/` | A documented-but-unspecified FabreX CLI; zero client libraries in any registry |
-| `plans/`, `rate-limits/` | Measured zeros — no pricing page, no published limits |
-| `conventions/` | Runtime semantics, mostly honest nulls; reversibility is `na` with the reason stated |
-| `llms/` | A generated llms.txt (GigaIO serves none) including a list of what is confirmed absent |
+| Discoverability | 51.7 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 27.6 |
+
+**Agent readiness 19.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 31.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/gigaio/](https://apis.io/providers/gigaio/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for GigaIO: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/gigaio/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
